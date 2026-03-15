@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<title>Para Nara ❤️</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(#0d001a,#ff4d6d);
+color:white;
+text-align:center;
+overflow:hidden;
+}
+
+/* tela inicial */
+
+#inicio{
+position:absolute;
+width:100%;
+height:100vh;
+background:black;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+#inicio button{
+padding:18px 35px;
+font-size:22px;
+border:none;
+border-radius:10px;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+}
+
+/* conteúdo */
+
+#conteudo{
+display:none;
+}
+
+/* estrelas */
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+animation:piscar 2s infinite;
+}
+
+@keyframes piscar{
+0%{opacity:0.3}
+50%{opacity:1}
+100%{opacity:0.3}
+}
+
+/* nome */
+
+h1{
+font-size:70px;
+text-shadow:0 0 25px white;
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.15)}
+100%{transform:scale(1)}
+}
+
+/* foto */
+
+img{
+width:260px;
+border-radius:25px;
+box-shadow:0 0 40px rgba(0,0,0,0.7);
+margin-top:20px;
+}
+
+/* texto */
+
+#texto{
+font-size:24px;
+width:80%;
+margin:auto;
+margin-top:30px;
+}
+
+/* contador */
+
+#contador{
+font-size:26px;
+margin-top:20px;
+color:#ffd1dc;
+}
+
+/* corações */
+
+.heart{
+position:absolute;
+font-size:28px;
+animation:subir linear infinite;
+}
+
+@keyframes subir{
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-100px)}
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="inicio">
+
+<h1>Tenho uma surpresa para você 💌</h1>
+
+<button onclick="abrir()">Abrir</button>
+
+</div>
+
+<div id="conteudo">
+
+<h1>Nara ❤️</h1>
+
+<p>Esse site é só pra você</p>
+
+<img src="foto.jpg">
+
+<p id="texto"></p>
+
+<div id="contador"></div>
+
+</div>
+
+<audio id="musica" loop>
+<source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+/* abrir site */
+
+function abrir(){
+
+document.getElementById("inicio").style.display="none";
+document.getElementById("conteudo").style.display="block";
+
+document.getElementById("musica").play();
+
+escrever();
+
+}
+
+/* estrelas */
+
+for(let i=0;i<200;i++){
+
+let star=document.createElement("div");
+
+star.className="star";
+
+star.style.left=Math.random()*100+"vw";
+star.style.top=Math.random()*100+"vh";
+
+document.body.appendChild(star);
+
+}
+
+/* corações */
+
+function coracao(){
+
+let heart=document.createElement("div");
+
+heart.className="heart";
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.animationDuration=(Math.random()*4+3)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove();},7000)
+
+}
+
+setInterval(coracao,300);
+
+/* mensagem */
+
+let mensagem="Nara, eu quis fazer algo diferente para você. Talvez esse site não consiga mostrar exatamente o tamanho do que eu sinto, mas cada linha aqui foi feita pensando em você. Desde o dia 12 de outubro de 2024 meu coração escolheu você e ele escolheria você de novo todos os dias.";
+
+let i=0;
+
+function escrever(){
+
+if(i<mensagem.length){
+
+document.getElementById("texto").innerHTML+=mensagem.charAt(i);
+
+i++;
+
+setTimeout(escrever,60);
+
+}else{
+
+setTimeout(()=>{
+document.getElementById("texto").innerHTML+="<br><br><h2 style='font-size:45px'>EU TE AMO NARA ❤️</h2>";
+},1500)
+
+}
+
+}
+
+/* contador */
+
+let inicio=new Date("2024-10-12");
+
+function atualizar(){
+
+let agora=new Date();
+
+let diff=agora-inicio;
+
+let dias=Math.floor(diff/(1000*60*60*24));
+
+document.getElementById("contador").innerHTML=
+"Eu te amo há "+dias+" dias ❤️";
+
+}
+
+setInterval(atualizar,1000);
+
+</script>
+
+</body>
+</html>
